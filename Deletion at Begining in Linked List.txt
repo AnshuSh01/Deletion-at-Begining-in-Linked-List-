@@ -1,0 +1,82 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct list
+{
+    int Info;
+    struct list*next;
+};
+
+void insertion(struct list**head,int value)
+{
+    struct list*newnode;
+    newnode=(struct list*)(malloc(sizeof(struct list)));
+    newnode->Info=value;
+    newnode->next=NULL;
+    
+    if(*head==NULL)
+    {
+        *head=newnode;
+    }
+    else{
+        newnode->next=(*head);
+        *head=newnode;
+    }
+}
+int Deletion(struct list**head)
+{
+    struct list*store;
+    
+}
+void display(struct list *head)
+{
+    if(head==NULL)
+    {
+        printf("List is Empty\n");
+        
+    }
+    else
+    {
+        while(head!=NULL)
+        {
+            printf("%d\t",head->Info);
+            head=head->next;
+        }
+    }
+}
+void delete_at_begining(struct list**head)
+{    struct list*newnode;
+    if(*head==NULL)
+    {
+        printf("\nList is Empty\n");
+        
+    }
+    else{
+      newnode=(*head);
+      *head=newnode->next;
+        free(newnode);
+    }
+}
+int main()
+{  struct list *head;
+head=NULL;
+    int choice ,value;
+    printf("Enter=\n1 For insertion\n2 For Deletion\n3 For Display\n");
+    while(1)
+    {   printf(" \nEnter choice\n");
+    scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            printf("\nEnter value you want to insert\n");
+            scanf("%d",&value);
+            insertion(&head,value);
+            break;
+            case 2:
+            delete_at_begining(&head);
+            break;
+            case 3:
+            display(head);
+            break;
+        }
+    }
+}
